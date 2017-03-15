@@ -1,0 +1,7 @@
+Django==1.9.1
+django-bootstrap3==6.2.2
+django-extensions==1.6.1
+
+# useful non-production packages (install manually)
+#django-debug-toolbar
+#pylint
