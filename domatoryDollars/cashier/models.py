@@ -13,7 +13,11 @@ class Room(models.Model):
     EmergencyRel  = models.CharField('Emergency relationship type', max_length=200)
     EmergencyTlfNumber = models.IntegerField('Emergency phone', null=False)
 
-
+    def toDict(self):
+        dicto = {}
+        dicto['roomNr'] = self.roomNr
+        dicto['name']   = self.name
+        return dicto
 
     def __str__(self):
         if self.nickName != "":
