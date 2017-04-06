@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    {% load staticfiles %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <style>
+      #overskrift {
+        text-align: center;
+        color: white;
+        background-color: black;
+      }
+    </style>
+  </head>
+
+
+
+<div class="jumbotron" id="overskrift">
+  <h1>Dormitory Dollars</h1>
+  <h3>Østervold Kollegiet 1. sal</h3>
+</div>
+
+
+<div class="container">
+  <h2 style="text-align:center;">Room overview</h2>
+  <div style="background-color: #e3e3e3; border-radius: 15px; margin-bottom: 10px;"
+  class="col-md-4 col-md-offset-4">
+    <h4 style="text-decoration:underline; text-align:center"> How to pay</h4>
+      <strong>Mobile-Pay:</strong> 29866771<br>
+      <strong>Bank-Transfer:</strong> 3098-3099538775<br>
+      If you have a postive amount in your account and want them paid out,
+      contact your friendly neighborhood cashier.
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Room Number</th>
+        <th>Name</th>
+        <th>Balance</th>
+        <th>Overview</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for room in data %}
+          {% if room.balance < 0  %}
+          <tr class="danger">
+          {% else %}
+          <tr class="success">
+          {% endif %}
+          <td>{{room.roomNr}}</td>
+          <td>{{room.name}}</td>
+          <td>{{room.balance}}</td>
+          <td class="text-center">
+            <a href="{% url 'Room' room.roomNr %}" class="btn btn-primary btn-sm">Room Overview</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+</html>
