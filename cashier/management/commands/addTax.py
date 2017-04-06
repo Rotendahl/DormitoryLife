@@ -23,6 +23,7 @@ class Command(BaseCommand):
                                     date=str(date.today()),
                                     amount=options['Amount'][0],
                                     description=options['Description'][0],
-                                    room=room
+                                    room=room,
+                                    refunded=True,
                         )
             Appliedtax.save()
