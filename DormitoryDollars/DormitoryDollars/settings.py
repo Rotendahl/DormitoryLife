@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'DormitoryDollars.cashier',
+    'cashier',
     'bootstrap3',
     'flat_responsive'
 ]
@@ -52,7 +52,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'DormitoryDollars.DormitoryDollars.urls'
+ROOT_URLCONF = 'DormitoryDollars.urls'
 
 TEMPLATES = [
     {
