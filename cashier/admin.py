@@ -25,8 +25,8 @@ admin.site.register(Room, RoomAdmin)
 class TransactionAdmin(admin.ModelAdmin):
     list_filter = ('room__roomNr',)
     fieldsets = [
-        ('Transaction', {'fields':('date', 'amount', 'description', 'room')}),
+        ('Transaction', {'fields':('date', 'amount', 'description', 'room', 'refunded')}),
 
     ]
-    list_display = ('room', 'date', 'amount', 'description')
+    list_display = ('room', 'date', 'amount', 'description', 'refunded')
 admin.site.register(Transaction, TransactionAdmin)

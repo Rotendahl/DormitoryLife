@@ -63,6 +63,7 @@ class Transaction(models.Model):
     amount = models.IntegerField('Amount', null=False)
     description = models.CharField('Description', null=False, max_length=300)
     room = models.ForeignKey('Room', Room, null=False)
+    refunded = models.BooleanField('Refunded', default=True)
 
     def __str__(self):
         return str(self.amount) + ": " + self.description
