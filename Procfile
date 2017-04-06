@@ -1,1 +1,1 @@
-web: gunicorn DormitoryDollars.DormitoryDollars.wsgi --log-file -
+web: gunicorn DormitoryDollars.wsgi
