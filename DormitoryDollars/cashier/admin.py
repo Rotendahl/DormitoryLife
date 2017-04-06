@@ -1,5 +1,5 @@
 from django.contrib import admin
-from cashier.models import Room, Transaction
+from DormitoryDollars.cashier.models import Room, Transaction
 
 # Register your models here.
 admin.site.site_header="Østervold 1. sal money"

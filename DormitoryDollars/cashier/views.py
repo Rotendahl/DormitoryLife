@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from cashier.models import Room
+from DormitoryDollars.cashier.models import Room
 from django.shortcuts import render, get_object_or_404
 # Create your views here.
 def AllRoomsOverview(request):
