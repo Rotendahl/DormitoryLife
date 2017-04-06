@@ -6,7 +6,7 @@ from cashier.models import Room
 from django.shortcuts import render, get_object_or_404
 # Create your views here.
 def AllRoomsOverview(request):
-    rooms = Room.objects.all().order_by('roomNr'):
+    rooms = Room.objects.all().order_by('roomNr')
     data = []
     for room in rooms:
         data.append(room.toDict())
