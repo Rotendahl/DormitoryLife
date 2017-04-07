@@ -1,13 +1,12 @@
-from django.core.management.base import BaseCommand, CommandError
-
-
+"""Command line utility to add a specified amount to each room"""
+from datetime import date
+from django.core.management.base import BaseCommand
 from cashier.models import Transaction, Room
 
-from datetime import date
 
 
 class Command(BaseCommand):
-
+    """ Extending the basecommand """
     help = 'Adds the specified amount to all rooms'
 
     def add_arguments(self, parser):
@@ -16,14 +15,10 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
-        print(options)
         rooms = Room.objects.all()
         for room in rooms:
-            Appliedtax = Transaction(
-                                    date=str(date.today()),
-                                    amount=options['Amount'][0],
-                                    description=options['Description'][0],
-                                    room=room,
-                                    refunded=True,
-                        )
-            Appliedtax.save()
+            appliedtax = Transaction(
+                date=str(date.today()), amount=options['Amount'][0],
+                description=options['Description'][0], room=room, refunded=True
+            )
+            appliedtax.save()
