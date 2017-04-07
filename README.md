@@ -3,12 +3,6 @@
 This system is made to help the cashier (me) at
 [Østervold Kollegiet](osetervold.dk).
 
-
-## The model
-
-## The workflow
-TODO Add description
-
 ### Setup
 First you have to install `Python 3.x` and `pip`.
 Then the following commands should be run:
