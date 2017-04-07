@@ -13,7 +13,7 @@ class RoomAdmin(admin.ModelAdmin):
         ('Room number', {'fields':('name', 'roomNr', 'nickName')}),
         ('Contact Info', {'fields':('mail', 'tlfNumber')}),
         ('Emergency contacts', {
-            'fields':('EmergencyName', 'EmergencyRel', 'EmergencyTlfNumber'),
+            'fields':('emergencyName', 'emergencyRel', 'emergencyTlfNumber'),
         }),
     ]
     list_display = ('roomNr', 'name')
