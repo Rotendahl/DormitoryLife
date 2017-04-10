@@ -17,8 +17,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         rooms = Room.objects.all()
         for room in rooms:
+            refund = True if options['Amount'][0] > 0 else False
             appliedtax = Transaction(
                 date=str(date.today()), amount=options['Amount'][0],
-                description=options['Description'][0], room=room, refunded=True
+                description=options['Description'][0], room=room, refunded=refund
             )
             appliedtax.save()

@@ -2,7 +2,7 @@
 from django.contrib import admin
 from cashier.models import Room, Transaction
 
-admin.site.site_header = "Østervold 1. sal money"
+admin.site.site_header = "Oestervold 1. sal money"
 admin.site.index_title = "Benjamin er sej!"
 
 
@@ -12,6 +12,7 @@ class RoomAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Room number', {'fields':('name', 'roomNr', 'nickName')}),
         ('Contact Info', {'fields':('mail', 'tlfNumber')}),
+        ('Konto:', {'fields':('accountNr', 'hasMobilePay')}),
         ('Emergency contacts', {
             'fields':('emergencyName', 'emergencyRel', 'emergencyTlfNumber'),
         }),

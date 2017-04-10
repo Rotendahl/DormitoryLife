@@ -9,6 +9,8 @@ class Room(models.Model):
     name = models.CharField('Name', max_length=200)
     nickName = models.CharField('Nickname', max_length=200, blank=True)
     tlfNumber = models.IntegerField('Phone Number', blank=True, null=True)
+    accountNr = models.CharField('Konto-nr', blank=True, max_length=20)
+    hasMobilePay = models.BooleanField('MobilePay', default=False)
     mail = models.EmailField('Email', blank=True, null=True)
     emergencyName = models.CharField(
         'Emergency Name', max_length=200, blank=True

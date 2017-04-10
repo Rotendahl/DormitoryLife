@@ -11,9 +11,9 @@ class RoomTestCase(TestCase):
             nickName="Benne",
             tlfNumber=29866771,
             mail="Benjamin@Rotendahl.dk",
-            EmergencyName="Simon Rotendahl",
-            EmergencyRel="Brother",
-            EmergencyTlfNumber=27586771
+            emergencyName="Simon Rotendahl",
+            emergencyRel="Brother",
+            emergencyTlfNumber=27586771
         )
         Transaction.objects.create(
             date="2016-11-27",
@@ -33,4 +33,4 @@ class RoomTestCase(TestCase):
     def test_get_balance(self):
         """Tests that the getBalance method works as expected"""
         room = Room.objects.get(roomNr=114)
-        self.assertEqual(50, room.getBalance())
+        self.assertEqual(50, room.get_balance())
