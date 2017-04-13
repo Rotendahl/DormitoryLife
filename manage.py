@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+""" Standard manage.py from django """
 import os
 import sys
 
