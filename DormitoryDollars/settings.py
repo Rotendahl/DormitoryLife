@@ -30,10 +30,9 @@ if SECRET_KEY is None:
 
 DEBUG = os.environ.get('DEBUG')
 if DEBUG is None:
-    # Key used in development
     DEBUG = True
-
-
+else:
+    DEBUG = False
 
 
 # Application definition
