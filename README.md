@@ -1,7 +1,7 @@
 # Cashier system
 A system to assist the cashier at a dormitory. It keeps track of transactions
 and presents them in a web interface.
-![Screenshot](Screenshot.png)
+![Screenshot](screenShot.png)
 ---
 
 ### How it works.
