@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Transaction(models.Model):
-    """ Models a financial transaction """
+    """ Models a financial transaction it overides """
 
     class Meta:
         """ Required by the sphix documentation tool """
