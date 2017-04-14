@@ -37,7 +37,7 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'dormitorydollars@rotendahl.dk'
 EMAIL_HOST_PASSWORD = os.environ.get('MAIL_KEY')
-
+SERVER_EMAIL = 'dormitorydollars@rotendahl.dk'
 
 # Application definition
 INSTALLED_APPS = [
