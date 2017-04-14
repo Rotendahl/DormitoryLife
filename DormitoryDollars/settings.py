@@ -30,6 +30,8 @@ if DEBUG is None:
 else:
     DEBUG = False
 
+IS_PRODUCTION = not DEBUG
+
 ADMINS = [('Benjamin Rotendahl', 'Benjamin@Rotendahl.dk')]
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'mail.rotendahl.dk'
@@ -38,6 +40,7 @@ EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'dormitorydollars@rotendahl.dk'
 EMAIL_HOST_PASSWORD = os.environ.get('MAIL_KEY')
 SERVER_EMAIL = 'dormitorydollars@rotendahl.dk'
+DEFAULT_FROM_EMAIL = SERVER_EMAIL
 
 # Application definition
 INSTALLED_APPS = [
@@ -133,9 +136,11 @@ CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_HTTPONLY = False
 X_FRAME_OPTIONS = 'ALLOW'
 ALLOWED_HOSTS = ['*']
+SECURE_HSTS_SECONDS = 300
+SECURE_SSL_REDIRECT = False
 
-
-if not DEBUG:
+if IS_PRODUCTION:
+    SECURE_SSL_REDIRECT = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_BROWSER_XSS_FILTER = True
     SESSION_COOKIE_SECURE = True
