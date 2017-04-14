@@ -30,7 +30,7 @@ if DEBUG is None:
 else:
     DEBUG = False
 
-
+ADMINS = [('Benjamin Rotendahl', 'Benjamin@Rotendahl.dk')]
 
 # Application definition
 INSTALLED_APPS = [
