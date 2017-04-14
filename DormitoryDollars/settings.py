@@ -24,7 +24,7 @@ if SECRET_KEY is None:
     # Key used in development
     SECRET_KEY = "@232s&o6)$an1(m128jta(vhk#udv4ff-34lz=tdl58ahf(8zd"
 
-IS_PRODUCTION = not bool(os.environ.get('DEBUG'))
+IS_PRODUCTION = bool(os.environ.get('DEBUG'))
 DEBUG = not IS_PRODUCTION
 
 ADMINS = [('Benjamin Rotendahl', 'Benjamin@Rotendahl.dk')]
