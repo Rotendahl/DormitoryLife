@@ -1,11 +1,20 @@
-""" Specifies the models for the cashier app """
+""" Specifies the room model for the cashier app """
 from __future__ import unicode_literals
 from django.db import models
 
+from cashier.models import Transaction
 
 
 class Room(models.Model):
-    """ Models a room in a dormitory """
+    """ Models a room in a dormitory.
+
+    It is only required the it has a roomNr and a name. It can have nickname,
+    contact info and an emergency contact.
+    """
+    class Meta:
+        """ Required by the sphix documentation tool """
+        app_label = 'cashier'
+
     roomNr = models.IntegerField(primary_key=True)
     name = models.CharField('Name', max_length=200)
     nickName = models.CharField('Nickname', max_length=200, blank=True)
@@ -23,6 +32,22 @@ class Room(models.Model):
         'Emergency phone', blank=True, null=True
     )
 
+
+    def __str__(self):
+        """ Returns a string representing the room """
+        if self.nickName != "":
+            return "Room " + str(self.roomNr) + ": " + self.nickName
+        else:
+            return "Room " + str(self.roomNr) + ": " + self.name
+
+
+    def __iter__(self):
+        """ Returns the required room parameters as a dictionary """
+        yield 'balance', self.get_balance()
+        yield 'roomNr', self.roomNr
+        yield 'name', self.name
+
+
     def get_balance(self):
         """ Returns the sum of all transactions tied to the room """
         trans = Transaction.objects.filter(room=self)
@@ -31,14 +56,20 @@ class Room(models.Model):
             balance += entry.amount
         return balance
 
-    def __iter__(self):
-        """ returns the required room parameters as a dictionary """
-        yield 'balance', self.get_balance()
-        yield 'roomNr', self.roomNr
-        yield 'name', self.name
+
+    def has_contact_info(self):
+        """ checks if any contact fields are blank """
+        return len(self.get_contact_info()) == 4
+
+
+    def get_all_transactions(self):
+        """ Returns all transactions associated with the room as a list """
+        transactions = Transaction.objects.filter(room=self).order_by('-date')
+        return list(map(dict, transactions))
+
 
     def get_contact_info(self):
-        """ returns the contact information for the room """
+        """ Returns the contact information for the room """
         contact_info = {}
         contact_info['Name'] = self.name
         secondary_info = [
@@ -53,39 +84,3 @@ class Room(models.Model):
             contact_info['EmergencyContact'] = self.emergencyRel \
                                               + " (" + self.emergencyName + ")"
         return contact_info
-
-    def has_contact_info(self):
-        """ checks if any contact fields are blank """
-        return len(self.get_contact_info()) == 4
-
-
-    def get_all_transactions(self):
-        """ Returns all transactions associated with the room """
-        transactions = Transaction.objects.filter(room=self).order_by('-date')
-        return list(map(dict, transactions))
-
-    def __str__(self):
-        if self.nickName != "":
-            return "Room " + str(self.roomNr) + ": " + self.nickName
-        else:
-            return "Room " + str(self.roomNr) + ": " + self.name
-
-
-
-class Transaction(models.Model):
-    """ Models a financial transaction """
-    date = models.DateField('Date', null=False)
-    room = models.ForeignKey('Room', Room, null=False)
-    amount = models.IntegerField('Amount', null=False)
-    refunded = models.BooleanField('Refunded', default=False)
-    description = models.CharField('Description', null=False, max_length=300)
-
-    def __str__(self):
-        return str(self.amount) + ": " + self.description
-
-    def __iter__(self):
-        """ returns the transaction as a dictionary """
-        yield 'date', self.date
-        yield 'room', self.room
-        yield 'amount', self.amount
-        yield 'description', self.description

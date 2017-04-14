@@ -1,0 +1,10 @@
+Models
+======
+.. automodule:: cashier.models
+    Below are all the models in the app.
+
+.. toctree::
+   :maxdepth: 5
+
+   modules/models/models/room
+   modules/models/models/transaction
