@@ -11,7 +11,7 @@ class Transaction(models.Model):
         app_label = 'cashier'
 
     date = models.DateField('Date', null=False)
-    amount = models.IntegerField('Amount', null=False)
+    amount = models.DecimalField('amount', max_digits=8, decimal_places=2)
     refunded = models.BooleanField('Refunded', default=False)
     description = models.CharField('Description', null=False, max_length=300)
     room = models.ForeignKey('Room')

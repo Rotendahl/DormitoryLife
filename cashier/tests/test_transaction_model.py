@@ -54,5 +54,5 @@ class TransactionTestCase(TestCase):
         """ Test the string cast of the object """
         transP = Transaction.objects.all().order_by('-date')[0]
         transM = Transaction.objects.all().order_by('-date')[1]
-        self.assertEqual("150: Bank Transfer", str(transP))
-        self.assertEqual("-100: Beers", str(transM))
+        self.assertEqual("150.00: Bank Transfer", str(transP))
+        self.assertEqual("-100.00: Beers", str(transM))
