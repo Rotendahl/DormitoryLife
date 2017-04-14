@@ -3,3 +3,5 @@ db.*
 *.pyc
 __pycache__
 backUps/
+.coverage
+htmlcov

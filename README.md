@@ -52,3 +52,10 @@ You can now visit the URL shown in step two and login at `something.heroku.com/a
 ### Contributing
 Pull requests are more than welcome, bonus point if the code conforms to
 `pylint`.
+There is a small test suite that can be run with the command `./mange.py test`
+To check if you new code is covered by tests you can run:
+```bash
+$ coverage run --source='.' manage.py test cashier
+$ coverage html
+```
+This will create a `htmlcov` directory where you can open the file `index.html`

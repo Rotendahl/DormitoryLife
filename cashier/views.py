@@ -7,10 +7,7 @@ from cashier.models import Room
 def all_rooms_overview(request):
     """ The view that shows the balance for all rooms """
     rooms = Room.objects.all().order_by('roomNr')
-    data = []
-    for room in rooms:
-        data.append(room.to_dict())
-    rooms = data
+    rooms = map(dict, rooms)
     return render(request, "cashier/AllRoomsOverView.html", {'data': rooms})
 
 

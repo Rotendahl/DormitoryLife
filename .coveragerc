@@ -1,0 +1,7 @@
+[run]
+omit =
+    virtualenv/*
+    */tests/*
+    DormitoryDollars/urls.py
+    cashier/apps.py
+    DormitoryDollars/wsgi.py
