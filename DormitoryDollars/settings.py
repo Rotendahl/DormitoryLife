@@ -35,6 +35,7 @@ else:
     DEBUG = False
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -130,7 +131,7 @@ DATABASES['default'].update(DB_FROM_ENV)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['dormitorydollars.herokuapp.com/']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
