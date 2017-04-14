@@ -31,6 +31,13 @@ else:
     DEBUG = False
 
 ADMINS = [('Benjamin Rotendahl', 'Benjamin@Rotendahl.dk')]
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.rotendahl.dk'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'dormitorydollars@rotendahl.dk'
+EMAIL_HOST_PASSWORD = os.environ.get('MAIL_KEY')
+
 
 # Application definition
 INSTALLED_APPS = [
