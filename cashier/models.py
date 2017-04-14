@@ -61,16 +61,14 @@ class Room(models.Model):
 
     def get_all_transactions(self):
         """ Returns all transactions associated with the room """
-        transactions = []
-        for trans in Transaction.objects.filter(room=self).order_by('-date'):
-            transactions.append(trans.to_dict())
-        return transactions
+        transactions = Transaction.objects.filter(room=self).order_by('-date')
+        return list(map(dict, transactions))
 
     def __str__(self):
         if self.nickName != "":
-            return "Room: " + str(self.roomNr) + ": " + self.nickName
+            return "Room " + str(self.roomNr) + ": " + self.nickName
         else:
-            return "Room: " + str(self.roomNr) + ": " + self.name
+            return "Room " + str(self.roomNr) + ": " + self.name
 
 
 
@@ -85,12 +83,9 @@ class Transaction(models.Model):
     def __str__(self):
         return str(self.amount) + ": " + self.description
 
-
-    def to_dict(self):
-        """ returns the transactions as a dictionary """
-        trans = {}
-        trans['date'] = self.date
-        trans['room'] = self.room
-        trans['amount'] = self.amount
-        trans['description'] = self.description
-        return trans
+    def __iter__(self):
+        """ returns the transaction as a dictionary """
+        yield 'date', self.date
+        yield 'room', self.room
+        yield 'amount', self.amount
+        yield 'description', self.description

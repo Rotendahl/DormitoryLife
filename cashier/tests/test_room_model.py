@@ -73,5 +73,24 @@ class RoomTestCase(TestCase):
 
     def test_get_transactions(self):
         """Tests that we get excatly all transactions that fit the room """
-        room114 = Room.objects.get(roomNr=114)
-        room113 = Room.objects.get(roomNr=113)
+        room114 = Room.objects.get(roomNr=114).get_all_transactions()
+        room113 = Room.objects.get(roomNr=113).get_all_transactions()
+
+        msg = "Gave a transaction that didn't belong to room"
+        self.assertEqual(0, len(room113), msg)
+
+        msg = "Gave a wrong number of transactions"
+        self.assertEqual(2, len(room114), msg)
+
+        trans114 = Transaction.objects.filter(room=Room.objects.get(roomNr=114))
+        trans114 = list(map(dict, trans114))
+        msg = "Gave a transaction for a wrong room"
+        for trans in room114:
+            self.assertTrue(trans in trans114, msg)
+
+    def test_str_cast(self):
+        """ Test the string cast of the object """
+        room114 = str(Room.objects.get(roomNr=114))
+        room113 = str(Room.objects.get(roomNr=113))
+        self.assertEqual('Room 114: Benne', str(room114))
+        self.assertEqual('Room 113: Preben Mogensen', str(room113))
