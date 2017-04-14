@@ -24,13 +24,8 @@ if SECRET_KEY is None:
     # Key used in development
     SECRET_KEY = "@232s&o6)$an1(m128jta(vhk#udv4ff-34lz=tdl58ahf(8zd"
 
-DEBUG = os.environ.get('DEBUG')
-if DEBUG is None:
-    DEBUG = True
-else:
-    DEBUG = False
-
-IS_PRODUCTION = not DEBUG
+IS_PRODUCTION = not bool(os.environ.get('DEBUG'))
+DEBUG = not IS_PRODUCTION
 
 ADMINS = [('Benjamin Rotendahl', 'Benjamin@Rotendahl.dk')]
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
