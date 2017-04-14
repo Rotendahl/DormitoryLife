@@ -1,7 +1,7 @@
 """ Tests the models """
+from datetime import date
 from django.test import TestCase
 from cashier.models import Room, Transaction
-from datetime import date
 
 class TransactionTestCase(TestCase):
     """ Tests the room model """
@@ -52,7 +52,7 @@ class TransactionTestCase(TestCase):
 
     def test_str_cast(self):
         """ Test the string cast of the object """
-        transP = Transaction.objects.all().order_by('-date')[0]
-        transM = Transaction.objects.all().order_by('-date')[1]
-        self.assertEqual("150.00: Bank Transfer", str(transP))
-        self.assertEqual("-100.00: Beers", str(transM))
+        trans_p = Transaction.objects.all().order_by('-date')[0]
+        trans_m = Transaction.objects.all().order_by('-date')[1]
+        self.assertEqual("150.00: Bank Transfer", str(trans_p))
+        self.assertEqual("-100.00: Beers", str(trans_m))

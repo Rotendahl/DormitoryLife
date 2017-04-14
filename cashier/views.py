@@ -18,4 +18,9 @@ def room_overview(request, room_nr):
     data = {'contactInfo' : room.get_contact_info(), 'transactions' : trans}
     data['hasContactInfo'] = room.has_contact_info()
     data['balance'] = room.get_balance()
+    rng = range(0, len(trans))[::-1]
+    total = 0
+    for i in rng:
+        total += trans[i]['amount']
+        trans[i]['total'] = total
     return render(request, "cashier/RoomOverView.html", {'data': data})
