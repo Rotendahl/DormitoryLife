@@ -28,8 +28,8 @@ class Room(models.Model):
     emergencyRel = models.CharField(
         'Emergency relationship type', max_length=200, blank=True
     )
-    emergencyTlfNumber = models.IntegerField(
-        'Emergency phone', blank=True, null=True
+    emergencyTlfNumber = models.CharField(
+        'Emergency phone',max_length=50, blank=True, null=True
     )
 
 

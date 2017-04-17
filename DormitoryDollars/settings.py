@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'cashier',
     'flat_responsive',
+    'django_extensions',
 ]
 
 
