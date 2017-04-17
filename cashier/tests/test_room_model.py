@@ -13,7 +13,7 @@ class RoomTestCase(TestCase):
             mail="Benjamin@dormitorydollars.com",
             emergencyName="Simon Rotendahl",
             emergencyRel="Brother",
-            emergencyTlfNumber=87654321
+            emergencyTlfNumber="87654321"
         )
         Room.objects.create(
             roomNr=113,
@@ -62,7 +62,7 @@ class RoomTestCase(TestCase):
         expected = {
             'Name' : 'Benjamin Rotendahl',
             'Phone' : 12345678,
-            'EmergencyPhone' : 87654321,
+            'EmergencyPhone' : "87654321",
             'EmergencyContact' : 'Brother (Simon Rotendahl)'
         }
         self.assertTrue(room114.has_contact_info())
