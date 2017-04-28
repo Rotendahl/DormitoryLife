@@ -39,7 +39,7 @@ admin.site.register(Room, RoomAdmin)
 
 class TransactionAdmin(admin.ModelAdmin):
     """ Specifies how the Transaction model should appear """
-    list_filter = ('room__roomNr',)
+    list_filter = ('room__roomNr', 'refunded')
     fieldsets = [
         ('Transaction',
          {'fields': ('date', 'amount', 'description', 'room', 'refunded')}
