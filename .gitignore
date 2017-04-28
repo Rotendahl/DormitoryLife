@@ -5,4 +5,4 @@ __pycache__
 backUps/
 .coverage
 htmlcov
-*_build/
+docs/_build/
