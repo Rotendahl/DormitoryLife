@@ -29,7 +29,7 @@ DEBUG = not IS_PRODUCTION
 
 ADMINS = [('Benjamin Rotendahl', 'Benjamin@Rotendahl.dk')]
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.rotendahl.dk'
+EMAIL_HOST = 'smtp.rotendahl.dk'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'dormitorydollars@rotendahl.dk'
