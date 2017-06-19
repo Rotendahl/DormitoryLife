@@ -1,7 +1,7 @@
 """ Specifies which parts of the cashier models are visible in the admin UI """
 from datetime import date
 from django.contrib import admin
-from cashier.models import Room, Transaction
+from cashier.models import Room, Transaction, Dinnerclub
 
 admin.site.site_header = "Oestervold 1. sal money"
 admin.site.index_title = "Benjamin er sej!"
@@ -60,3 +60,20 @@ class TransactionAdmin(admin.ModelAdmin):
     mark_refunded.short_description = 'Mærk transaktioner som refunderet'
 
 admin.site.register(Transaction, TransactionAdmin)
+
+class TransactionInLine(admin.TabularInline):
+    """ Used in the dinnerclub admin to easily add participants """
+    model = Transaction
+    extra = 0
+
+class DinnerAdmin(admin.ModelAdmin):
+    """ Specifies how the dinnerclub model should appear """
+    list_filter = ('host', 'date',)
+    fieldsets = [
+        ('Dinnerclub',
+         {'fields': ('date', 'host', 'totalAmount', 'menu')}
+        ),
+    ]
+    list_display = ('date', 'host', 'totalAmount', 'menu')
+    inlines = [TransactionInLine,]
+admin.site.register(Dinnerclub, DinnerAdmin)
