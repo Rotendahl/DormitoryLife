@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    {% load staticfiles %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <style>
+      #overskrift {
+        text-align: center;
+        color: white;
+        background-color: black;
+      }
+
+    </style>
+  </head>
+
+
+
+<div class="jumbotron" id="overskrift">
+  <h1>Dormitory Dollars</h1>
+  <h3>Østervold Kollegiet 1. sal</h3>
+</div>
+
+
+<div class="container">
+  {% if data.error %}
+    <h2 class="Danger" style="text-align:center;">Error</h2>
+
+    <h2 style="text-align:center;"> {{ data.status }}
+      <br>
+
+    <a href="{% url 'AddDinner' %}">Try again?</a>
+  {% else %}
+  <h2 class="Succes" style="text-align:center;">DinnerClub added</h2>
+  {{data.status}}
+  <br>
+  <a href="{% url 'AddDinner' %}">Add one more?</a>
+  {% endif %}
+
+  </h2>
+</html>

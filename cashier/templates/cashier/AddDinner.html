@@ -9,12 +9,18 @@
     {% load bootstrap3 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+    <script type="text/javascript">
+      $( function() {
+        $( "#Date" ).datepicker({ dateFormat: 'dd-mm-yy' });
+      } );
+    </script>
     <style>
       #overskrift {
         text-align: center;
         color: white;
         background-color: black;
       }
+
     </style>
   </head>
 
@@ -27,7 +33,58 @@
 
 
 <div class="container">
-  <h2 style="text-align:center;">Add DinnerClub</h2
+  <h2 style="text-align:center;">Add DinnerClub</h2>
+  <div>
+    <form class="form-inline" action="{% url 'AddDinner' %}" method="post">
+      {% csrf_token %}
+      <div class="row">
+      <div class="input-group col-xs-3">
+        <label for="Host">Host:</label>
+        <select class="form-control" id="Host" name="Host">
+          {% for room in data.roomNrs %}
+          <option>{{room}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-xs-1"></div>
+      <div class="input-group col-xs-3">
+        <label for="Date">Date:</label>
+        <input type="date" class="form-control" id="Date" name="Date">
+      </div>
+      <div class="col-xs-1"></div>
+      <div class="input-group col-xs-3">
+        <label for="Price">Price:</label>
+        <input type="number" class="form-control" id="Price" name="Price">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-xs-2"></div>
+      <div class="input-group col-xs-9">
+        <label for="Menu">Menu:</label>
+        <input type="text" class="form-control" id="Menu" name="Menu">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-2"></div>
+      <div class="input-group col-xs-9">
+        <strong>Participants</strong>:
+        {% for room in data.roomNrs  %}
+          <label class="checkbox" style="margin-right: 10px">
+            <input type="checkbox" name="participants">{{room}}
+          </label>
+        {% endfor %}
+      </div>
+    </div>
+
+   <div class="row">
+     <br>
+   <div class="col-sm-offset-5 col-sm-8">
+     <input type="submit" value="Submit" class="btn btn-primary" />
+   </div>
+    </form>
+  <div>
 </div>
 
 
