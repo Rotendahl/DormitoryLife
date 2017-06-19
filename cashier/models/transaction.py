@@ -17,6 +17,8 @@ class Transaction(models.Model):
     description = models.CharField('Description', null=False, max_length=300)
     room = models.ForeignKey('Room')
 
+    dinnerclub = models.ForeignKey('dinnerclub', null=True)
+
     def __str__(self):
         return str(self.amount) + ": " + self.description
 
