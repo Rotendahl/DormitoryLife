@@ -31,7 +31,7 @@ def add_dinner(request):
     if request.method == 'POST':
         return handleDinnerClub(request)
 
-    rooms = Room.objects.all()
+    rooms = Room.objects.all().order_by('roomNr')
     data = {'roomNrs': []}
     for room in rooms:
         data['roomNrs'].append(room.roomNr)
