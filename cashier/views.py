@@ -1,8 +1,7 @@
 """ Views for the cashier app """
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from cashier.models import Room
-
-
 
 def all_rooms_overview(request):
     """ The view that shows the balance for all rooms """
@@ -24,3 +23,9 @@ def room_overview(request, room_nr):
         total += trans[i]['amount']
         trans[i]['total'] = total
     return render(request, "cashier/RoomOverView.html", {'data': data})
+
+
+@login_required
+def add_dinner(request):
+    """ Page to add dinnerclub """
+    return render(request, "cashier/AddDinner.html", {'data': {}})
