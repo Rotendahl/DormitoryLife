@@ -1,7 +1,7 @@
 """ Views for the cashier app """
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from cashier.models import Room, Dinnerclub
+from cashier.models import Room, Dinnerclub, Transaction
 
 def all_rooms_overview(request):
     """ The view that shows the balance for all rooms """
@@ -40,8 +40,10 @@ def add_dinner(request):
 
 def handleDinnerClub(request):
     """Takes a dinnerclub request and returns the probper template"""
+    participants = request.POST.getlist('participants')
+    print(participants)
     fields = request.POST
-    if len(fields) != 6:
+    if len(participants) < 2:
         msg = {'status': "No participants added", 'error': True}
         return render(request, "cashier/dinnerStatus.html", {'data' : msg})
 
@@ -56,7 +58,31 @@ def handleDinnerClub(request):
         host=Room.objects.get(pk=fields['Host']),
         menu=fields['Menu'],
         )
-    print(din_club)
     din_club.save()
+    nr_participants = len(participants)
+    price_per_room = (int(din_club.totalAmount) / float(nr_participants)) * -1
+    for room in participants:
+        trans = Transaction(
+            date=din_club.date,
+            amount=price_per_room,
+            refunded=True,
+            dateOfRefund=din_club.date,
+            description="Dinnerclub:" + str(din_club),
+            room=Room.objects.get(pk=room),
+            dinnerclub=din_club
+        )
+        trans.save()
+    #Host
+    trans = Transaction(
+        date=din_club.date,
+        amount=din_club.totalAmount,
+        refunded=True,
+        dateOfRefund=din_club.date,
+        description="Hosting: " + str(din_club),
+        room=din_club.host,
+        dinnerclub=din_club
+    )
+    trans.save()
+
     msg = {'status': str(din_club), 'error': False}
     return render(request, "cashier/dinnerStatus.html", {'data' : msg})

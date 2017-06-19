@@ -27,7 +27,7 @@
 
 
 <div class="jumbotron" id="overskrift">
-  <h1>Dormitory Dollars</h1>
+  <h1><a href="{% url 'AllRooms' %}">Dormitory Dollars</a></h1>
   <h3>Østervold Kollegiet 1. sal</h3>
 </div>
 
@@ -72,7 +72,7 @@
         <strong>Participants</strong>:
         {% for room in data.roomNrs  %}
           <label class="checkbox" style="margin-right: 10px">
-            <input type="checkbox" name="participants">{{room}}
+            <input type="checkbox" value="{{room}}" name="participants">{{room}}
           </label>
         {% endfor %}
       </div>
