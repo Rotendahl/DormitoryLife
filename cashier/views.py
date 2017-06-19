@@ -67,7 +67,7 @@ def handleDinnerClub(request):
             amount=price_per_room,
             refunded=True,
             dateOfRefund=din_club.date,
-            description="Dinnerclub:" + str(din_club),
+            description="Dinnerclub: " + str(din_club),
             room=Room.objects.get(pk=room),
             dinnerclub=din_club
         )
@@ -78,7 +78,7 @@ def handleDinnerClub(request):
         amount=din_club.totalAmount,
         refunded=True,
         dateOfRefund=din_club.date,
-        description="Hosting: " + str(din_club),
+        description="Host Dinnerclub: " + str(din_club),
         room=din_club.host,
         dinnerclub=din_club
     )
