@@ -42,10 +42,14 @@ class TransactionAdmin(admin.ModelAdmin):
     list_filter = ('refunded', 'room__roomNr',)
     fieldsets = [
         ('Transaction',
-         {'fields': ('date', 'amount', 'description', 'room', 'refunded')}
+         {'fields': ('date', 'amount', 'description', 'room', 'refunded',
+                     'dateOfRefund',
+                    )}
         ),
     ]
-    list_display = ('room', 'date', 'amount', 'description', 'refunded')
+    list_display = ('room', 'date', 'amount', 'description', 'refunded',
+                    'dateOfRefund'
+                   )
     actions = ['mark_refunded']
 
     def mark_refunded(self, request, queryset):

@@ -13,6 +13,7 @@ class Transaction(models.Model):
     date = models.DateField('Date', null=False)
     amount = models.DecimalField('amount', max_digits=8, decimal_places=2)
     refunded = models.BooleanField('Refunded', default=False)
+    dateOfRefund = models.DateField("Refunded Date", null=True)
     description = models.CharField('Description', null=False, max_length=300)
     room = models.ForeignKey('Room')
 
