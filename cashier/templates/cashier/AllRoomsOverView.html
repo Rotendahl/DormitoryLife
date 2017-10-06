@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<html lang="da">
-<head>
-    {% load staticfiles %}
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    {% load bootstrap3 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    <style>
-      #overskrift {
-        text-align: center;
-        color: white;
-        background-color: black;
-      }
-    </style>
-  </head>
-
-
-
-<div class="jumbotron" id="overskrift">
-  <h1>Dormitory Dollars</h1>
-  <h3>Østervold Kollegiet 1. sal</h3>
-</div>
-
-
+{% extends 'cashier/base.html' %}
+{% block content %}
 <div class="container">
   <h2 style="text-align:center;">Room overview</h2>
   <div style="background-color: #e3e3e3; border-radius: 15px; margin-bottom: 10px;"
@@ -63,6 +37,4 @@
     </tbody>
   </table>
 </div>
-
-
-</html>
+{% endblock %}
