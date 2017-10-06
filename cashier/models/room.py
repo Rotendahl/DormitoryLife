@@ -42,14 +42,12 @@ class Room(models.Model):
 
 
     def __iter__(self):
-        """ Returns the required room parameters as a dictionary """
         yield 'balance', self.get_balance()
         yield 'roomNr', self.roomNr
         yield 'name', self.name
 
 
     def get_balance(self):
-        """ Returns the sum of all transactions tied to the room """
         trans = Transaction.objects.filter(room=self)
         balance = 0
         for entry in trans:
@@ -58,18 +56,15 @@ class Room(models.Model):
 
 
     def has_contact_info(self):
-        """ checks if any contact fields are blank """
         return len(self.get_contact_info()) == 4
 
 
     def get_all_transactions(self):
-        """ Returns all transactions associated with the room as a list """
         transactions = Transaction.objects.filter(room=self).order_by('-date')
         return list(map(dict, transactions))
 
 
     def get_contact_info(self):
-        """ Returns the contact information for the room """
         contact_info = {}
         contact_info['Name'] = self.name
         secondary_info = [
