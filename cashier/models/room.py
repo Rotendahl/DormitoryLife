@@ -51,10 +51,12 @@ class Room(models.Model):
         trans = Transaction.objects.filter(room=self)
         balance = 0
         for entry in trans:
-            if entry.typeOfTransaction == 'debt':
-                balance -= entry.amount
-            elif entry.typeOfTransaction == 'expense':
+            print(entry.typeOfTransaction)
+            print("skylder: " + str(entry.amount))
+            if entry.typeOfTransaction == 'expense':
                 balance += entry.amount
+            else:
+                balance -= entry.amount
         return balance
 
 

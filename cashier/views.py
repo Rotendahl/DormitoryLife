@@ -20,7 +20,11 @@ def room_overview(request, room_nr):
     rng = range(0, len(trans))[::-1]
     total = 0
     for i in rng:
-        total += trans[i]['amount']
+        print(trans[i]['type'])
+        if trans[i]['type'] == 'expense':
+            total += trans[i]['amount']
+        else:
+            total -= trans[i]['amount']
         trans[i]['total'] = total
     return render(request, "cashier/RoomOverView.html", {'data': data})
 

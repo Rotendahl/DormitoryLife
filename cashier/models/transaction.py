@@ -13,10 +13,10 @@ class Transaction(models.Model):
     date = models.DateField('Date', null=False)
     amount = models.DecimalField('amount', max_digits=8, decimal_places=2)
     description = models.CharField('Description', null=False, max_length=300)
-    types = (('dept', 'Gæld'), ('expense', 'Udlæg'))
+    types = (('debt', 'Gæld'), ('expense', 'Udlæg'))
     room = models.ForeignKey('Room')
     typeOfTransaction = models.CharField('Type', max_length=7, choices=types,
-    default='dept')
+    default='debt')
 
     dinnerclub = models.ForeignKey('dinnerclub', null=True)
 

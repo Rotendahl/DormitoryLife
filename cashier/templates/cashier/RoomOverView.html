@@ -55,14 +55,15 @@
     </thead>
     <tbody>
       {% for transaction in data.transactions %}
-          {% if transaction.amount < 0  %}
-          <tr class="danger">
+          {% if transaction.type == 'expense'  %}
+            <tr class="success">
           {% else %}
-          <tr class="success">
+            <tr class="danger">
           {% endif %}
           <td>{{transaction.date}}</td>
           <td>{{transaction.description}}</td>
           <td>{{transaction.amount}}</td>
+          <td>{{transaction.type}}</td>
           <td>{{transaction.total}}</td>
         </tr>
       {% endfor %}
