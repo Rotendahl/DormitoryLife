@@ -46,6 +46,13 @@ class TransactionAdmin(admin.ModelAdmin):
         ),
     ]
     list_display = ('room', 'date','typeOfTransaction', 'amount', 'description')
+    actions = ['mark_as_payment']
+
+    def mark_as_payment(self, request, queryset):
+        trans_updated = queryset.update(typeOfTransaction='pay')
+        msg = str(trans_updated) + " transaktioner market som refunderet"
+        self.message_user(request, msg)
+    mark_as_payment.short_description = 'Has bin marked as payments'
 admin.site.register(Transaction, TransactionAdmin)
 
 
