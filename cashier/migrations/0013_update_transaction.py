@@ -20,7 +20,7 @@ def setTransactionType(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cashier', '0011_auto_20171006_1750'),
+        ('cashier', '0012_auto_20171006_1820'),
     ]
 
     operations = [
