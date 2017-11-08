@@ -67,10 +67,9 @@ def handleDinnerClub(request):
         trans = Transaction(
             date=din_club.date,
             amount=price_per_room,
-            refunded=True,
-            dateOfRefund=din_club.date,
             description="Dinnerclub: " + str(din_club),
             room=Room.objects.get(pk=room),
+            typeOfTransaction = 'debt',
             dinnerclub=din_club
         )
         trans.save()
@@ -78,8 +77,7 @@ def handleDinnerClub(request):
     trans = Transaction(
         date=din_club.date,
         amount=din_club.totalAmount,
-        refunded=True,
-        dateOfRefund=din_club.date,
+        typeOfTransaction='expense',
         description="Host Dinnerclub: " + str(din_club),
         room=din_club.host,
         dinnerclub=din_club

@@ -29,7 +29,7 @@ class Dinnerclub(models.Model):
 
 
     def __str__(self):
-        return str(self.date) + " Host " + str(self.host)
+        return str(self.date) + " -- Host " + str(self.host)
 
 
     def __iter__(self):
