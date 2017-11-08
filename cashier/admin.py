@@ -46,7 +46,7 @@ class TransactionAdmin(admin.ModelAdmin):
         ),
     ]
     list_display = ('room', 'date','typeOfTransaction', 'amount', 'description')
-    actions = ['mark_as_payment']
+    actions = ['mark_as_payment','mark_as_debt', 'mark_as_expense']
 
     def mark_as_payment(self, request, queryset):
         trans_updated = queryset.update(typeOfTransaction='pay')
@@ -65,7 +65,7 @@ class TransactionAdmin(admin.ModelAdmin):
         msg = str(trans_updated) + " transactions marked as expense"
         self.message_user(request, msg)
     mark_as_expense.short_description = 'Mark as expense'
-    
+
 admin.site.register(Transaction, TransactionAdmin)
 
 
