@@ -20,8 +20,7 @@ def room_overview(request, room_nr):
     rng = range(0, len(trans))[::-1]
     total = 0
     for i in rng:
-        print(trans[i]['type'])
-        if trans[i]['type'] == 'expense':
+        if trans[i]['type'] == 'expense' or trans[i]['type'] == 'pay':
             total += trans[i]['amount']
         else:
             total -= trans[i]['amount']
@@ -45,7 +44,6 @@ def add_dinner(request):
 def handleDinnerClub(request):
     """Takes a dinnerclub request and returns the probper template"""
     participants = request.POST.getlist('participants')
-    print(participants)
     fields = request.POST
     if len(participants) < 2:
         msg = {'status': "No participants added", 'error': True}

@@ -1,39 +1,13 @@
 """ Tests the models """
 from django.test import TestCase
 from cashier.models import Room, Transaction
+from . import sharedSetup
+
 
 class RoomTestCase(TestCase):
     """ Tests the room model """
     def setUp(self):
-        Room.objects.create(
-            roomNr=114,
-            name="Benjamin Rotendahl",
-            nickName="Benne",
-            tlfNumber=12345678,
-            mail="Benjamin@dormitorydollars.com",
-            emergencyName="Simon Rotendahl",
-            emergencyRel="Brother",
-            emergencyTlfNumber="87654321"
-        )
-        Room.objects.create(
-            roomNr=113,
-            name="Preben Mogensen",
-        )
-        Transaction.objects.create(
-            date="2016-11-27",
-            amount=-100,
-            description="Beers",
-            room=Room.objects.get(roomNr=114),
-            refunded=True
-        )
-        Transaction.objects.create(
-            date="2016-11-30",
-            amount=150,
-            description="Bank Transfer",
-            room=Room.objects.get(roomNr=114),
-            refunded=False
-        )
-
+        sharedSetup(self)
 
     def test_get_balance(self):
         """Tests that the getBalance method works as expected"""

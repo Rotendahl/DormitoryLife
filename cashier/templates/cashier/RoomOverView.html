@@ -55,7 +55,7 @@
     </thead>
     <tbody>
       {% for transaction in data.transactions %}
-          {% if transaction.type == 'expense'  %}
+          {% if transaction.type == 'expense' or transaction.type == 'pay' %}
             <tr class="success">
           {% else %}
             <tr class="danger">

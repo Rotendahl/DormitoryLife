@@ -13,7 +13,7 @@ class Transaction(models.Model):
     date = models.DateField('Date', null=False)
     amount = models.DecimalField('amount', max_digits=8, decimal_places=2)
     description = models.CharField('Description', null=False, max_length=300)
-    types = (('debt', 'Gæld'), ('expense', 'Udlæg'))
+    types = (('debt', 'Debt'), ('expense', 'Expense'), ('pay', 'Payment') )
     room = models.ForeignKey('Room')
     typeOfTransaction = models.CharField('Type', max_length=7, choices=types,
     default='debt')

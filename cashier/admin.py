@@ -1,7 +1,7 @@
 """ Specifies which parts of the cashier models are visible in the admin UI """
 from datetime import date
 from django.contrib import admin
-from cashier.models import Room, Transaction, Dinnerclub
+from cashier.models import Room, Transaction, Dinnerclub, Payment
 
 admin.site.site_header = "Oestervold 1. sal money"
 admin.site.index_title = "Benjamin er sej!"
@@ -26,8 +26,8 @@ class RoomAdmin(admin.ModelAdmin):
         month = str(date.today().strftime("%B"))
         for room in queryset:
             appliedtax = Transaction(
-                date=str(date.today()), amount=-40,
-                description='Køkkenskat for ' + month, room=room, refunded=True
+                date=str(date.today()), amount=40, typeOfTransaction='debt',
+                description='Køkkenskat for ' + month, room=room,
             )
             appliedtax.save()
         msg = "Køkkenskat for " + month + " tilføjet til valgte værelser"
@@ -46,6 +46,21 @@ class TransactionAdmin(admin.ModelAdmin):
         ),
     ]
     list_display = ('room', 'date','typeOfTransaction', 'amount', 'description')
+admin.site.register(Transaction, TransactionAdmin)
+
+
+class PaymentAdmin(admin.ModelAdmin):
+    list_filter = ('room__roomNr','refunded')
+    fieldsets = [
+        ('Payment',
+         {'fields': (
+                     'refunded', 'date', 'typeOfTransaction', 'amount',
+                     'description','room'
+                    ),
+        }
+        ),
+    ]
+    list_display = ('room', 'date','typeOfTransaction', 'amount', 'description')
     actions = ['mark_refunded']
 
     def mark_refunded(self, request, queryset):
@@ -55,7 +70,8 @@ class TransactionAdmin(admin.ModelAdmin):
         self.message_user(request, msg)
     mark_refunded.short_description = 'Mærk transaktioner som refunderet'
 
-admin.site.register(Transaction, TransactionAdmin)
+admin.site.register(Payment, PaymentAdmin)
+
 
 class TransactionInLine(admin.TabularInline):
     """ Used in the dinnerclub admin to easily add participants """
