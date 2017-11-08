@@ -50,9 +50,22 @@ class TransactionAdmin(admin.ModelAdmin):
 
     def mark_as_payment(self, request, queryset):
         trans_updated = queryset.update(typeOfTransaction='pay')
-        msg = str(trans_updated) + " transaktioner market som refunderet"
+        msg = str(trans_updated) + " transactions marked as payment"
         self.message_user(request, msg)
-    mark_as_payment.short_description = 'Has bin marked as payments'
+    mark_as_payment.short_description = 'Mark as payment'
+
+    def mark_as_debt(self, request, queryset):
+        trans_updated = queryset.update(typeOfTransaction='debt')
+        msg = str(trans_updated) + " transactions marked as debt"
+        self.message_user(request, msg)
+    mark_as_debt.short_description = 'Mark as debt'
+
+    def mark_as_expense(self, request, queryset):
+        trans_updated = queryset.update(typeOfTransaction='expense')
+        msg = str(trans_updated) + " transactions marked as expense"
+        self.message_user(request, msg)
+    mark_as_expense.short_description = 'Mark as expense'
+    
 admin.site.register(Transaction, TransactionAdmin)
 
 
