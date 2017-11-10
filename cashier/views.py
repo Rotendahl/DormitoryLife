@@ -34,7 +34,7 @@ def add_dinner(request):
     if request.method == 'POST':
         return handleDinnerClub(request)
 
-    rooms = Room.objects.all()
+    rooms = Room.objects.all().order_by('roomNr')
     data = {'roomNrs': [], 'rooms' : []}
     for room in rooms:
         data['roomNrs'].append(str(room.roomNr))
@@ -55,10 +55,12 @@ def handleDinnerClub(request):
             msg = {'status': "Field: " + field + " was empty", 'error': True}
             return render(request, "cashier/dinnerStatus.html", {'data' : msg})
 
+    hostRoom = fields['Host'].split(':')[0].split(' ')[1] 
+
     din_club = Dinnerclub(
         date='-'.join(fields['Date'].split('-')[::-1]), # Fuck date formats
         totalAmount=fields['Price'],
-        host=Room.objects.get(pk=fields['Host']),
+        host=Room.objects.get(pk=hostRoom),
         menu=fields['Menu'],
         )
     din_club.save()
