@@ -35,9 +35,10 @@ def add_dinner(request):
         return handleDinnerClub(request)
 
     rooms = Room.objects.all()
-    data = {'roomNrs': []}
+    data = {'roomNrs': [], 'rooms' : []}
     for room in rooms:
-        data['roomNrs'].append(room.roomNr)
+        data['roomNrs'].append(str(room.roomNr))
+        data['rooms'].append(str(room))
     return render(request, "cashier/AddDinner.html", {'data': data})
 
 
