@@ -1,5 +1,4 @@
 virtualenv
-db.*
 *.pyc
 __pycache__
 backUps/
