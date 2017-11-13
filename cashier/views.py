@@ -65,7 +65,7 @@ def handleDinnerClub(request):
         )
     din_club.save()
     nr_participants = len(participants)
-    price_per_room = (int(din_club.totalAmount) / float(nr_participants)) * -1
+    price_per_room = (int(din_club.totalAmount) / float(nr_participants)) 
     for room in participants:
         trans = Transaction(
             date=din_club.date,
