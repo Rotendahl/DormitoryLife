@@ -13,12 +13,13 @@ class Transaction(models.Model):
     date = models.DateField('Date', null=False)
     amount = models.DecimalField('amount', max_digits=8, decimal_places=2)
     description = models.CharField('Description', null=False, max_length=300)
+    archived = models.BooleanField('Arkiveret', default=False)
     types = (('debt', 'Debt'), ('expense', 'Expense'), ('pay', 'Payment') )
-    room = models.ForeignKey('Room')
+    room = models.ForeignKey('Room', on_delete=models.PROTECT)
     typeOfTransaction = models.CharField('Type', max_length=7, choices=types,
     default='debt')
 
-    dinnerclub = models.ForeignKey('dinnerclub', null=True)
+    dinnerclub = models.ForeignKey('dinnerclub', null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.amount) + ": " + self.description
@@ -30,3 +31,4 @@ class Transaction(models.Model):
         yield 'amount', self.amount
         yield 'type', self.typeOfTransaction
         yield 'description', self.description
+        yield 'archived', self.archived

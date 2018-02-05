@@ -51,6 +51,8 @@ class Room(models.Model):
         trans = Transaction.objects.filter(room=self)
         balance = 0
         for entry in trans:
+            if entry.archived:
+                continue
             transType = entry.typeOfTransaction
             if transType == 'expense' or transType == 'pay':
                 balance += entry.amount
@@ -64,7 +66,8 @@ class Room(models.Model):
 
 
     def get_all_transactions(self):
-        transactions = Transaction.objects.filter(room=self).order_by('-date')
+        transactions = Transaction.objects.filter(room=self, archived=False).order_by('-date')
+
         return list(map(dict, transactions))
 
 

@@ -55,7 +55,7 @@ def handleDinnerClub(request):
             msg = {'status': "Field: " + field + " was empty", 'error': True}
             return render(request, "cashier/dinnerStatus.html", {'data' : msg})
 
-    hostRoom = fields['Host'].split(':')[0].split(' ')[1] 
+    hostRoom = fields['Host'].split(':')[0].split(' ')[1]
 
     din_club = Dinnerclub(
         date='-'.join(fields['Date'].split('-')[::-1]), # Fuck date formats
@@ -65,7 +65,7 @@ def handleDinnerClub(request):
         )
     din_club.save()
     nr_participants = len(participants)
-    price_per_room = (int(din_club.totalAmount) / float(nr_participants)) 
+    price_per_room = (int(din_club.totalAmount) / float(nr_participants))
     for room in participants:
         trans = Transaction(
             date=din_club.date,

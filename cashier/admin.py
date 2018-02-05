@@ -42,11 +42,11 @@ class TransactionAdmin(admin.ModelAdmin):
     list_filter = ('room__roomNr','typeOfTransaction')
     fieldsets = [
         ('Transaction',
-         {'fields': ('date', 'typeOfTransaction', 'amount', 'description', 'room')}
+         {'fields': ('date', 'typeOfTransaction', 'amount', 'description', 'room', 'archived')}
         ),
     ]
     list_display = ('room', 'date','typeOfTransaction', 'amount', 'description')
-    actions = ['mark_as_payment','mark_as_debt', 'mark_as_expense']
+    actions = ['mark_as_payment','mark_as_debt', 'mark_as_expense', 'mark_as_archived']
 
     def mark_as_payment(self, request, queryset):
         trans_updated = queryset.update(typeOfTransaction='pay')
@@ -65,6 +65,12 @@ class TransactionAdmin(admin.ModelAdmin):
         msg = str(trans_updated) + " transactions marked as expense"
         self.message_user(request, msg)
     mark_as_expense.short_description = 'Mark as expense'
+
+    def mark_as_archived(self, request, queryset):
+        trans_updated = queryset.update(archived=True)
+        msg = str(trans_updated) + " marked as Archived"
+        self.message_user(request, msg)
+    mark_as_expense.short_description = 'Archive'
 
 admin.site.register(Transaction, TransactionAdmin)
 

@@ -19,7 +19,7 @@ class Dinnerclub(models.Model):
     date = models.DateField('Date', null=False)
     totalAmount = models.DecimalField('Total Amount', max_digits=8,
                                       decimal_places=2)
-    host = models.ForeignKey('Room')
+    host = models.ForeignKey('Room', on_delete=models.CASCADE)
     menu = models.CharField('Menu', null=False, max_length=300)
 
 
