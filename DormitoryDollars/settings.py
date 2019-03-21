@@ -133,7 +133,8 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = 'DENY'
-ALLOWED_HOSTS = ['dormitorydollars.herokuapp.com', '0.0.0.0', 'www.oestervoldkollegiet.dk']
+ALLOWED_HOSTS = ['dormitorydollars.herokuapp.com', '0.0.0.0','www.oestervoldkollegiet.dk']
+ALLOWED_HOSTS = ['*']
 
 if DEBUG: # pragma: no cover
     SECURE_CONTENT_TYPE_NOSNIFF = False
