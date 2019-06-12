@@ -23,6 +23,6 @@ pytz==2017.3
 requests>=2.20.0
 six==1.11.0
 snowballstemmer==1.2.1
-Sphinx==1.5.5
+Sphinx==2.1.1
 whitenoise==3.2
 wrapt==1.10.10
