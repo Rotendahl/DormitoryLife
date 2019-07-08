@@ -1,0 +1,55 @@
+<!-- templates/registration/login.html -->
+{% extends 'cashier/base.html' %} {% block content %}
+
+<div class="text-center shadow-lg p-3 mb-5 bg-white rounded">
+  <h2>Login</h2>
+  <p>
+    Rikke siger du skal bruge adgangskode for at komme ind, så råb af hende
+    indtil hun giver dig det
+  </p>
+  <form method="post">
+    <div class="form-group" style="width:500px; margin:auto">
+      {% csrf_token %}
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span
+            class="input-group-text"
+            id="basic-addon1"
+            style="font-weight:800"
+            >Et brugernavn:</span
+          >
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="En bruger"
+          aria-label="Brugernavn"
+          aria-describedby="basic-addon1"
+          name="username"
+          id="id_username"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span
+            class="input-group-text"
+            id="basic-addon1"
+            style="font-weight:800"
+            >En kode:</span
+          >
+        </div>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Et løsen"
+          aria-label="Kodeord"
+          aria-describedby="basic-addon1"
+          name="password"
+          id="id_password"
+        />
+      </div>
+      <button class="btn btn-primary" type="submit">Log ind</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

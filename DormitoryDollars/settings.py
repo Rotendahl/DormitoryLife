@@ -148,7 +148,7 @@ if DEBUG:  # pragma: no cover
 STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
 STATIC_URL = "/static/"
 
-
+LOGIN_REDIRECT_URL = "/"
 STATICFILES_DIRS = [os.path.join(PROJECT_ROOT, "static")]
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

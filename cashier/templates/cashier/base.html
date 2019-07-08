@@ -1,35 +1,50 @@
 <!DOCTYPE html>
 <html lang="da">
-
-<head>
+  <head>
     {% load staticfiles %}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    {% load bootstrap3 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
     <script type="text/javascript">
-        $(function() {
-            $("#Date").datepicker({
-                dateFormat: 'dd-mm-yy'
-            });
+      $(function() {
+        $("#Date").datepicker({
+          dateFormat: "dd-mm-yy"
         });
+      });
     </script>
     <style>
-        #overskrift {
-            text-align: center;
-            color: white;
-            background-color: black;
-        }
+      #overskrift {
+        text-align: center;
+        color: white;
+        background-color: black;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="jumbotron" id="overskrift">
-        <h1><a href="{% url 'AllRooms' %}">Dormitory Dollars</a></h1>
-        <h3>Østervold Kollegiet 1. sal</h3>
+      <h1><a href="{% url 'AllRooms' %}">Dormitory Dollars</a></h1>
+      <h3>Østervold Kollegiet 1. sal</h3>
     </div>
-    {% block content %}
-    {% endblock %}
-</body>
+    {% block content %} {% endblock %}
+  </body>
 </html>

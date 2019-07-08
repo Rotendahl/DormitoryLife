@@ -1,4 +1,5 @@
 virtualenv
+.venv
 .DS_Store
 *.pyc
 __pycache__

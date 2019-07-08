@@ -26,3 +26,4 @@ snowballstemmer==1.2.1
 Sphinx==1.5.5
 whitenoise==3.2
 wrapt==1.10.10
+psycopg2
