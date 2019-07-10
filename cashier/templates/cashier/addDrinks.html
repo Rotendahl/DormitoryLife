@@ -1,0 +1,72 @@
+{% extends 'cashier/base.html' %} {% block content %}
+<h2 class="text-center">Tilføj Drikkevarer</h2>
+
+<form action="{% url 'AddDrinks' %}" method="post">
+  {% csrf_token %}
+  <div class="row">
+    <div class="input-group mb-3 col">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Pris per Sodavand</span>
+      </div>
+      <input
+        type="number"
+        class="form-control"
+        name="price-soda"
+        id="price-soda"
+      />
+    </div>
+
+    <div class="input-group mb-3 col">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Pris per Bajs</span>
+      </div>
+      <input type="number" class="form-control" name="price-beer" />
+    </div>
+  </div>
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Værelse</th>
+        <th scope="col">Sodavand</th>
+        <th scope="col">Øl</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for room in rooms %}
+      <tr>
+        <th>{{room.roomNr}} : {{room.name}}</th>
+        <td>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Antal sodavand</span>
+            </div>
+            <input
+              type="number"
+              class="form-control"
+              name="{{room.roomNr}}-consumed-soda"
+            />
+          </div>
+        </td>
+        <td>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Antal Bajs</span>
+            </div>
+            <input
+              type="number"
+              class="form-control"
+              name="{{room.roomNr}}-consumed-beer"
+            />
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <input
+    type="submit"
+    value="Submit"
+    class="btn btn-primary btn-lg btn-block"
+  />
+</form>
+{% endblock %}

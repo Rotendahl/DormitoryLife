@@ -2,6 +2,37 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from cashier.models import Room, Dinnerclub, Transaction
+import datetime
+
+
+@login_required
+def add_drinks(request):
+    rooms = [dict(room) for room in Room.objects.all().order_by("roomNr")]
+    if request.method == "POST":
+        data = {}
+        for key in request.POST:
+            if request.POST[key] != "":
+                data[key] = request.POST[key]
+        sodaPrice = float(data["price-soda"])
+        beerPrice = float(data["price-beer"])
+        print(data)
+        consumptions = [key for key in data.keys() if "consumed" in key]
+
+        for consumption in consumptions:
+            nrItem = int(data[consumption])
+            itemType = consumption.split("-")[-1]
+
+            amount = sodaPrice * nrItem if "soda" in itemType else beerPrice * nrItem
+            t = Transaction(
+                date=datetime.date.today(),
+                amount=amount,
+                description=f"Drank {nrItem} {itemType}s",
+                typeOfTransaction="expense",
+                room=Room.objects.filter(roomNr=int(consumption.split("-")[0]))[0],
+            )
+            t.save()
+            return render(request, "cashier/drinkStatus.html")
+    return render(request, "cashier/addDrinks.html", {"rooms": rooms})
 
 
 @login_required
