@@ -29,7 +29,7 @@ def add_drinks(request):
                 date=datetime.date.today(),
                 amount=amount,
                 description=f"Drank {nrItem} {itemType}s",
-                typeOfTransaction="expense",
+                typeOfTransaction="debt",
                 room=Room.objects.filter(roomNr=int(consumption.split("-")[0]))[0],
             )
             t.save()
