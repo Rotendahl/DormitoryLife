@@ -59,7 +59,7 @@
     If you don't have mobilepay pay in cash to Rikke.
   </div>
   <table class="table table-bordered table-hover table-condensed">
-    <thead>
+    <thead class="thead-dark">
       <tr>
         <th>Date</th>
         <th>Description</th>
@@ -71,9 +71,9 @@
     <tbody>
       {% for transaction in data.transactions %}
           {% if transaction.type == 'expense' or transaction.type == 'pay' %}
-            <tr class="success">
+            <tr class="table-success">
           {% else %}
-            <tr class="danger">
+            <tr class="table-danger">
           {% endif %}
           <td>{{transaction.date}}</td>
           <td>{{transaction.description}}</td>

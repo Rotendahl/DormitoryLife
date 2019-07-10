@@ -1,58 +1,72 @@
-{% extends 'cashier/base.html' %}
-{% block content %}
+{% extends 'cashier/base.html' %} {% block content %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous"
+/>
+<script
+  src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"
+  type="text/javascript"
+></script>
+<link
+  href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css"
+  rel="stylesheet"
+  type="text/css"
+/>
 
-<div class="container">
-  <h2 style="text-align:center;">Add DinnerClub</h2>
-  <div>
-    <form class="form-inline" action="{% url 'AddDinner' %}" method="post">
-      {% csrf_token %}
-      <div class="row">
-      <div class="input-group col-xs-3">
-        <label for="Host">Host:</label>
-        <select class="form-control" id="Host" name="Host">
-          {% for room in data.rooms %}
-          <option>{{room}}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <div class="col-xs-1"></div>
-      <div class="input-group col-xs-3">
-        <label for="Date">Date:</label>
-        <input type="date" class="form-control" id="Date" name="Date">
-      </div>
-      <div class="col-xs-1"></div>
-      <div class="input-group col-xs-3">
-        <label for="Price">Price:</label>
-        <input type="number" class="form-control" id="Price" name="Price">
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-xs-2"></div>
-      <div class="input-group col-xs-9">
-        <label for="Menu">Menu:</label>
-        <input type="text" class="form-control" id="Menu" name="Menu">
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-2"></div>
-      <div class="input-group col-xs-9">
-        <strong>Participants</strong>:
-        {% for room in data.roomNrs  %}
-          <label class="checkbox" style="margin-right: 10px">
-            <input type="checkbox" value="{{room}}" name="participants">{{room}}
-          </label>
+<h2 class="text-center">Tilføj Madklub</h2>
+<form action="{% url 'AddDinner' %}" method="post">
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="col-sm-4 form-group">
+      <label class="col-form-label" for="Host">Vært:</label>
+      <select class="custom-select" id="Host" name="Host">
+        <option selected>Vælg en vært</option>
+        {% for room in data.rooms %}
+        <option>{{room}}</option>
         {% endfor %}
+      </select>
+    </div>
+    <div class="col-sm-4 form-group">
+      <div class="input-group">
+        <label class="col-form-label" for="Date">Dato:</label>
+        <input type="text" class="form-control" id="Date" name="Date" />
+        <script>
+          $("#Date").datepicker({
+            uiLibrary: "bootstrap4"
+          });
+        </script>
       </div>
     </div>
+    <div class="col-sm-4 form-group">
+      <label class="col-form-label" for="Price">Pris:</label>
+      <input type="number" class="form-control" id="Price" name="Price" />
+    </div>
+  </div>
+  <div class="form-row">
+    <label class="col-form-label" for="Menu">Menu:</label>
+    <input type="text" class="form-control" id="Menu" name="Menu" />
+  </div>
 
-   <div class="row">
-     <br>
-   <div class="col-sm-offset-5 col-sm-8">
-     <input type="submit" value="Submit" class="btn btn-primary" />
-   </div>
-    </form>
-  <div>
-</div>
+  <div class="form-row">
+    <label class="col-form-label" for="Deltagere">Deltagere:</label>
+    <!-- prettier fix -->
+    {% for room in data.roomNrs %}
+    <div id="Deltagere" class="form-check form-check-inline">
+      <label class="form-check-label" for="id_{{room}}">{{room}}</label>
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="id_{{room}}"
+        value="{{room}}"
+        name="participants"
+      />
+    </div>
+    {% endfor %}
+  </div>
+  <input type="submit" value="Submit" class="btn btn-primary" />
+</form>
+
 {% endblock %}

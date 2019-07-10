@@ -23,7 +23,7 @@
     If you don't have mobilepay pay in cash to Rikke.
   </div>
   <table class="table table-bordered table-hover">
-    <thead>
+    <thead class="thead-dark">
       <tr>
         <th>Room Number</th>
         <th>Name</th>
@@ -33,11 +33,11 @@
     </thead>
     <tbody>
       {% for room in data %} {% if room.balance < 0 %}
-      <tr class="danger">
+      <tr class="table-danger">
         {% else %}
       </tr>
 
-      <tr class="success">
+      <tr class="table-success">
         {% endif %}
         <td>{{room.roomNr}}</td>
         <td>{{room.name}}</td>

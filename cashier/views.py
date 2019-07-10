@@ -60,7 +60,7 @@ def handleDinnerClub(request):
 
     hostRoom = fields["Host"].split(":")[0].split(" ")[1]
     din_club = Dinnerclub(
-        date="-".join(fields["Date"].split("-")[::-1]),  # Fuck date formats
+        date="-".join(fields["Date"].split("/")[::-1]),  # Fuck date formats
         totalAmount=fields["Price"],
         host=Room.objects.get(pk=hostRoom),
         menu=fields["Menu"],
