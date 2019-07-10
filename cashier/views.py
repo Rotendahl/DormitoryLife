@@ -20,6 +20,8 @@ def add_drinks(request):
 
         for consumption in consumptions:
             nrItem = int(data[consumption])
+            if nrItem < 1:
+                continue
             itemType = consumption.split("-")[-1]
 
             amount = sodaPrice * nrItem if "soda" in itemType else beerPrice * nrItem
