@@ -33,7 +33,7 @@ def add_drinks(request):
                 room=Room.objects.filter(roomNr=int(consumption.split("-")[0]))[0],
             )
             t.save()
-            return render(request, "cashier/drinkStatus.html")
+        return render(request, "cashier/drinkStatus.html")
     return render(request, "cashier/addDrinks.html", {"rooms": rooms})
 
 
