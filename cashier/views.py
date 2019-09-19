@@ -13,8 +13,8 @@ def add_drinks(request):
         for key in request.POST:
             if request.POST[key] != "":
                 data[key] = request.POST[key]
-        sodaPrice = float(data["price-soda"])
-        beerPrice = float(data["price-beer"])
+        sodaPrice = float(data["price-soda"].replace(',','.'))
+        beerPrice = float(data["price-beer"].replace(',','.')
         print(data)
         consumptions = [key for key in data.keys() if "consumed" in key]
 
