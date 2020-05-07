@@ -25,5 +25,5 @@ six==1.11.0
 snowballstemmer==1.2.1
 Sphinx==2.1.2
 whitenoise==3.2
-wrapt==1.11.2
+wrapt==1.12.1
 psycopg2
