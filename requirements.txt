@@ -24,6 +24,6 @@ requests>=2.20.0
 six==1.14.0
 snowballstemmer==1.2.1
 Sphinx==2.1.2
-whitenoise==3.2
+whitenoise==5.0.1
 wrapt==1.12.1
 psycopg2
