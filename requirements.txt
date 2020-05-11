@@ -1,7 +1,7 @@
 alabaster==0.7.12
 appdirs==1.4.3
 Babel==2.7.0
-coverage==5.0.4
+coverage==5.1
 dj-database-url==0.4.1
 django==3.0.6
 django-bootstrap3==12.1.0
