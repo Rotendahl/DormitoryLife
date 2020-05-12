@@ -1,5 +1,5 @@
 alabaster==0.7.12
-appdirs==1.4.3
+appdirs==1.4.4
 Babel==2.7.0
 coverage==5.1
 dj-database-url==0.4.1
