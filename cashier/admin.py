@@ -26,7 +26,7 @@ class RoomAdmin(admin.ModelAdmin):
         month = str(date.today().strftime("%B"))
         for room in queryset:
             appliedtax = Transaction(
-                date=str(date.today()), amount=45, typeOfTransaction='debt',
+                date=str(date.today()), amount=65, typeOfTransaction='debt',
                 description='Køkkenskat for ' + month, room=room,
             )
             appliedtax.save()
