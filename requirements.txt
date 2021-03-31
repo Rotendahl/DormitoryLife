@@ -23,7 +23,7 @@ pytz==2020.1
 requests>=2.20.0
 six==1.14.0
 snowballstemmer==2.0.0
-Sphinx==2.1.2
+Sphinx==3.0.3
 whitenoise==5.0.1
 wrapt==1.12.1
 psycopg2
